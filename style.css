@@ -1,0 +1,51 @@
+.header {
+    text-align: center;
+    padding: 25px;
+    background-color: rgb(250, 96, 0);
+    color: white
+}
+
+html, body {
+    height: 100%;
+}
+
+main {
+    height: 100%;
+}
+
+#firstCol {
+    background-color: rgb(216, 216, 216);
+}
+
+.row {
+    padding: 10px;
+}
+
+.btn {
+    margin-left: 5px;
+}
+
+li {
+    border: groove;
+    border-width: 1px;
+    border-color: rgb(186, 186, 186);
+    border-radius: 8px;
+    padding: 10px;
+    list-style-type: none;
+    width: 100%;
+}
+
+#cityList {
+    padding-left: 0;
+}
+
+#dataDiv {
+    padding: 15px;
+    border: solid;
+    border-width: 2px;
+    border-color: lightgray;
+}
+
+#fiveDayForecast {
+    padding-top: 10px;
+}
