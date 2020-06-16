@@ -22,13 +22,11 @@
             </h4>
             <form>
                 <div class="form-group row">
-                    <input type="text" class="col-sm-7"><button type="submit" class="btn btn-primary col-sm-2"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    <input id="searchInput" type="text" class="col-sm-7"><button id="citySearchBtn" type="submit" class="btn btn-primary col-sm-2"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
             </form>
             <div id="cityList">
                 <ul class="col-sm-12 row" id="searched-cities">
-                    <li>Chicago</li>
-                    <li>New York</li>
                 </ul>
             </div>
         </div>
@@ -81,6 +79,7 @@
         </div>
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
