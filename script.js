@@ -25,7 +25,7 @@ function renderWeatherInfo() {
     }).then(function(response) {
         console.log(response);
         var name = response.city.name;
-        var temp = "Temperature: " + (response.list[0].main.temp) + " °F";
+        var temp = "Temperature: " + (response.list[0].main.temp).toFixed(1) + " °F";
         var humidity = "Humidity: " + response.list[0].main.humidity + "%";
         var windSpeed = "Wind Speed: " + response.list[0].wind.speed + " MPH";
         var cityHeading = $("<h3>");
@@ -80,10 +80,24 @@ function renderWeatherInfo() {
             url: uvURL,
             method: 'GET',
         }).then(function(result) {
-            var uvIndex = "UV Index: " + result.value;
-            var uvP = $("<p>");
-            uvP.text(uvIndex);
-            $("#weatherData").append(uvP);
+            var uvIndex = "UV Index: ";
+            var uvResult = result.value;
+            var uvDiv = $("<div>");
+            var uvResultDiv = $("<div>");
+            uvResultDiv.attr("class", "uvDivs");
+            uvDiv.attr("class", "uvDivs");
+            uvResultDiv.text(uvResult);
+            uvDiv.text(uvIndex);
+            $("#weatherData").append(uvDiv);
+            $("#weatherData").append(uvResultDiv);
+            uvResultDiv.attr("id", "uvBox");
+            if(uvResult <= 3) {
+                uvResultDiv.attr("class", "uvDivs uvLow");
+            } else if (uvResult <= 7) {
+                uvResultDiv.attr("class", "uvDivs uvMed");
+            } else if(uvResult <= 13) {
+                uvResultDiv.attr("class", "uvDivs uvHigh");
+            }
         })
 
         
