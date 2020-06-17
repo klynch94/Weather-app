@@ -2,7 +2,8 @@
     text-align: center;
     padding: 25px;
     background-color: rgb(250, 96, 0);
-    color: white
+    color: white;
+    width: auto;
 }
 
 html, body, main {
@@ -42,11 +43,23 @@ li {
     border-color: lightgray;
 }
 
+h3 {
+    margin-top: 7px;
+}
+
 #fiveDayForecast {
     padding-top: 10px;
 }
 
 .card {
     background-color: rgb(45, 100, 247);
-    color: white
+    color: white;
+}
+
+.card-body {
+    font-size: 13px;
+}
+
+img {
+    width: 50px;
 }
