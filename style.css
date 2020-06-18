@@ -34,6 +34,10 @@ li {
     width: 100%;
 }
 
+li:hover {
+    background-color: rgb(45,166,247);
+}
+
 #cityList {
     padding-left: 0;
 }
@@ -47,6 +51,7 @@ li {
 
 h3 {
     margin-top: 7px;
+    padding-right: 10px;
 }
 
 .uvDivs {
@@ -88,6 +93,7 @@ h3 {
 
 .card-body {
     font-size: 13px;
+    /* padding: 15 0 15 0; */
 }
 
 img {

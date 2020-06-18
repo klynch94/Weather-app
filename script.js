@@ -25,7 +25,7 @@ function createCities (city) {
 
 function firstLoad () {
     if(localStorage.getItem("cityArr")) {
-        cityArr = JSON.parse(localStorage.getItem("cityArr"))
+        cityArr = JSON.parse(localStorage.getItem("cityArr"));
     }
     for (var i=0; i<cityArr.length; i++) {
         createCities(cityArr[i]);
@@ -34,7 +34,7 @@ function firstLoad () {
 }
 
 
- firstLoad();
+firstLoad();
 
 function renderWeatherInfo(city) {
   
@@ -48,17 +48,19 @@ function renderWeatherInfo(city) {
         url: queryURL,
         method: 'GET',
     }).then(function(response) {
-        console.log(response);
         var name = response.city.name;
         var temp = "Temperature: " + (response.list[0].main.temp).toFixed(1) + " °F";
         var humidity = "Humidity: " + response.list[0].main.humidity + "%";
         var windSpeed = "Wind Speed: " + response.list[0].wind.speed + " MPH";
         var cityHeading = $("<h3>");
+        var currentDate = $("<h3>");
         var currentIconImg = $("<img>");
         var currentIconURL = "http://openweathermap.org/img/wn/" + response.list[0].weather[0].icon + "@2x.png";
         currentIconImg.attr("src", currentIconURL);
         cityHeading.text(name);
+        currentDate.text(moment.unix(response.list[0].dt).format("MM/DD/YYYY"));
         $("#cityName").append(cityHeading);
+        $("#cityName").append(currentDate);
         $("#cityName").append(currentIconImg);
         var tempP = $("<p>");
         tempP.text(temp);
@@ -73,21 +75,24 @@ function renderWeatherInfo(city) {
         // getting data for next 5 days by looking for 12:00:00 on each list
         for(var i=0; i<response.list.length; i++) {
             if(response.list[i].dt_txt.includes("12:00:00")) {
+                var nextDay = moment.unix(response.list[i].dt).format("MM/DD/YYYY");
+                var dateHeading = $("<h5>");
                 var dayTemp = "Temp: " + Math.floor((response.list[i].main.temp)) + " °F";
                 var dayHumid = "Humidity: " + response.list[i].main.humidity + "%";
                 var iconImg = $("<img>");
                 var iconURL = "http://openweathermap.org/img/wn/" + response.list[i].weather[0].icon + "@2x.png";
-                console.log(iconURL);
+                dateHeading.text(nextDay);
+                dateHeading.attr("class", "card-title");
                 iconImg.attr("src", iconURL);
                 var card = $("<div>");
                 card.addClass("card");
                 var cardBody = $("<div>");
                 cardBody.attr("class", "card-body");
-                cardBody.attr("class", "container");
                 var oneP = $("<p>");
                 var twoP = $("<p>");
                 oneP.text(dayTemp);
                 twoP.text(dayHumid);
+                cardBody.append(dateHeading);
                 cardBody.append(iconImg);
                 cardBody.append(oneP);
                 cardBody.append(twoP);
