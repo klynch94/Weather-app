@@ -1,22 +1,47 @@
+var cityArr = [];
+
 
 // event listener for search button. also adds searched city to history..
 $("#citySearchBtn").on("click", function(event) {
     event.preventDefault();
+    var city = $("#searchInput").val().trim().toLowerCase();
+    if (cityArr.indexOf(city) === -1) {
+    cityArr.push(city);
+    localStorage.setItem("cityArr", JSON.stringify(cityArr));
+    createCities(city);
+    }
+    renderWeatherInfo(city);
+})
+
+function createCities (city) {
+        var newLi = $('<li class="previousCities">');
+        newLi.text(city);
+        newLi.on("click",function(){
+            var city = ($(this).text())
+            renderWeatherInfo(city);
+        })
+        $("#searched-cities").prepend(newLi);
+}
+
+function firstLoad () {
+    if(localStorage.getItem("cityArr")) {
+        cityArr = JSON.parse(localStorage.getItem("cityArr"))
+    }
+    for (var i=0; i<cityArr.length; i++) {
+        createCities(cityArr[i]);
+    }
+    renderWeatherInfo(cityArr[cityArr.length - 1]);
+}
+
+
+ firstLoad();
+
+function renderWeatherInfo(city) {
+  
     $("#cityName").empty();
     $("#weatherData").empty();
     $("#cardHolder").empty();
-    var city = $("#searchInput").val();
-    var newLi = $('<li class="previousCities">');
-    newLi.attr("data-name", city);
-    newLi.text(city);
-    $("#searched-cities").append(newLi);
-    renderWeatherInfo();
-})
 
-
-
-function renderWeatherInfo() {
-    var city = $("#searchInput").val();
     var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial";
 
     $.ajax({
@@ -103,6 +128,15 @@ function renderWeatherInfo() {
         
         
 
+    }).catch(function(error) {
+        if($("#searchInput").val().length > 0) {
+            alert("city not found")
+            var duplicate = $("#searchInput").val()
+            cityArr.splice(cityArr.indexOf(duplicate), 1);
+            localStorage.setItem("cityArr", JSON.stringify(cityArr));
+
+            location.reload();
+        }
     })
 }
 
