@@ -42,7 +42,7 @@ function renderWeatherInfo(city) {
     $("#weatherData").empty();
     $("#cardHolder").empty();
 
-    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial";
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial";
 
     $.ajax({
         url: queryURL,
