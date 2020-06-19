@@ -55,7 +55,7 @@ function renderWeatherInfo(city) {
         var cityHeading = $("<h3>");
         var currentDate = $("<h3>");
         var currentIconImg = $("<img>");
-        var currentIconURL = "http://openweathermap.org/img/wn/" + response.list[0].weather[0].icon + "@2x.png";
+        var currentIconURL = "https://openweathermap.org/img/wn/" + response.list[0].weather[0].icon + "@2x.png";
         currentIconImg.attr("src", currentIconURL);
         cityHeading.text(name);
         currentDate.text(moment.unix(response.list[0].dt).format("MM/DD/YYYY"));
@@ -80,7 +80,7 @@ function renderWeatherInfo(city) {
                 var dayTemp = "Temp: " + Math.floor((response.list[i].main.temp)) + " °F";
                 var dayHumid = "Humidity: " + response.list[i].main.humidity + "%";
                 var iconImg = $("<img>");
-                var iconURL = "http://openweathermap.org/img/wn/" + response.list[i].weather[0].icon + "@2x.png";
+                var iconURL = "https://openweathermap.org/img/wn/" + response.list[i].weather[0].icon + "@2x.png";
                 dateHeading.text(nextDay);
                 dateHeading.attr("class", "card-title");
                 iconImg.attr("src", iconURL);
@@ -104,7 +104,7 @@ function renderWeatherInfo(city) {
         // calling UV api
         var lat = response.city.coord.lat;
         var long = response.city.coord.lon;
-        var uvURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey + "&lat=" + lat + "&lon=" + long;
+        var uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey + "&lat=" + lat + "&lon=" + long;
 
         $.ajax({
             url: uvURL,
