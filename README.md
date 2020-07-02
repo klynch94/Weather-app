@@ -15,3 +15,6 @@ I also used localStorage to save the users searched cities, and gave them the ab
 <img src="assets/previousCities.png">
 
 P.S. I tried to make the header look like a sunset :) enjoy!!
+
+
+Link to deployed application: https://klynch94.github.io/Weather-app/
